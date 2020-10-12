@@ -1,33 +1,27 @@
 import time
 import webbrowser
 import os
-import openvpn_api
+from OpenHole import Connect
+from OpenHole import Disconnect
 
-proxy = "20speed487631:546449@127.0.0.1"
-proxies = [
-    "20speed487631:546449@127.0.0.2"
-    "20speed487631:546449@127.0.0.3"
-    "20speed487631:546449@127.0.0.4"
-]
-v = openvpn_api.VPN(proxy, 7505)
-browserExe = "iexplore.exe" 
-url = 'gestyy.com/ee27TQ'
+
+browserExe = "iexplore.exe"
+url = 'https://youtube.com'
+testurl = 'https://httpbin.org/ip'
+
 i = 0
 p = 0
-#j= 2 * i
+
 def OpenUrl():
-    webbrowser.open_new(url)
+    webbrowser.open_new(testurl)
 
-
-while i <= 5:
-    v.connect()
+while i <= 2000:
+    if (Connect()== False):
+        Connect()
     OpenUrl()
     i += 1
-    time.sleep(7)
+    time.sleep(6)
     if (i % 5 == 0):
         time.sleep(2)
         os.system("taskkill /f /im "+browserExe)
-        v.disconnect()
-        proxy = proxies[p]
-        p += 1
-        break
+        Disconnect()
