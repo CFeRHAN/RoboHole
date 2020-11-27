@@ -1,5 +1,9 @@
+# Install:
+# requests
+# stem
+# pysocks
+
 import requests
-import time
 from stem import Signal
 from stem.control import Controller
 
